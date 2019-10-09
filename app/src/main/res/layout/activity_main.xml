@@ -4,15 +4,76 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@drawable/gradient_background"
+    tools:context=".main.MainActivity">
 
     <TextView
+        android:id="@+id/location_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="32dp"
+        android:text="Tropical"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/date_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Tue, October 8 32:07"
+        android:textColor="@color/offsetWhite"
+        app:layout_constraintEnd_toEndOf="@+id/location_tv"
+        app:layout_constraintStart_toStartOf="@+id/location_tv"
+        app:layout_constraintTop_toBottomOf="@+id/location_tv" />
+
+    <TextView
+        android:id="@+id/current_temp_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="32°"
+        android:textSize="64sp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/date_tv"
+        app:layout_constraintStart_toStartOf="@+id/date_tv"
+        app:layout_constraintTop_toBottomOf="@+id/date_tv" />
+
+    <TextView
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:id="@+id/feels_like_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Feels Like 29°"
+        android:textColor="@color/offsetWhite"
+        app:layout_constraintEnd_toEndOf="@+id/current_temp_tv"
+        app:layout_constraintStart_toStartOf="@+id/current_temp_tv"
+        app:layout_constraintTop_toBottomOf="@+id/current_temp_tv" />
+
+    <TextView
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:id="@+id/summary_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Mostly Cloudy"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/feels_like_tv"
+        app:layout_constraintStart_toStartOf="@+id/feels_like_tv"
+        app:layout_constraintTop_toBottomOf="@+id/feels_like_tv" />
+
+    <ImageView
+        android:id="@+id/reload_iv"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/reload"
+        app:layout_constraintEnd_toEndOf="@+id/summary_tv"
+        app:layout_constraintStart_toStartOf="@+id/summary_tv"
+        app:layout_constraintTop_toBottomOf="@+id/summary_tv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

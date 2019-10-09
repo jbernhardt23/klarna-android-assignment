@@ -1,7 +1,8 @@
-package com.example.klarnaweather
+package com.example.klarnaweather.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.klarnaweather.R
 
 class MainActivity : AppCompatActivity() {
 
