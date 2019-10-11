@@ -1,5 +1,7 @@
 package com.example.klarnaweather.main
 
+import com.example.klarnaweather.data.models.Weather
+
 interface MainView {
 
     /**
@@ -7,4 +9,21 @@ interface MainView {
      * @param message
      */
     fun showToast(message: String)
+
+    /**
+     * show loading
+     */
+    fun showLoading()
+
+    /**
+     * hide loading
+     */
+    fun hideLoading()
+
+
+    /**
+     * Update view with weather data
+     * @param weather
+     */
+    fun updateWeatherInfo(weather: Weather)
 }

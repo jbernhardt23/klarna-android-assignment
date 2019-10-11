@@ -1,7 +1,7 @@
 package com.example.klarnaweather.data.models
 
 data class CurrentWeather(
-    val time: Double, val summary: String, val icon: String,
+    val time: Long, val summary: String, val icon: String,
     val precipIntensity: Double,
     val precipProbability: Double,
     val precipType: String,

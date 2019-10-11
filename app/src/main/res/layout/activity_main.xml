@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
+    android:animateLayoutChanges="true"
+    android:id="@+id/main_container"
     tools:context=".main.MainActivity">
 
     <TextView
@@ -12,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Tropical"
+        android:text=""
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Tue, October 8 32:07"
+        android:text=""
         android:textColor="@color/offsetWhite"
         app:layout_constraintEnd_toEndOf="@+id/location_tv"
         app:layout_constraintStart_toStartOf="@+id/location_tv"
@@ -35,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="32°"
+        android:text=""
         android:textSize="64sp"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/date_tv"
@@ -48,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Feels Like 29°"
+        android:text=""
         android:textColor="@color/offsetWhite"
         app:layout_constraintEnd_toEndOf="@+id/current_temp_tv"
         app:layout_constraintStart_toStartOf="@+id/current_temp_tv"
@@ -60,7 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Mostly Cloudy"
+        android:text=""
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/feels_like_tv"
         app:layout_constraintStart_toStartOf="@+id/feels_like_tv"
@@ -72,6 +74,18 @@
         android:layout_height="32dp"
         android:layout_marginTop="24dp"
         android:src="@drawable/reload"
+        android:onClick="onRefreshClick"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/summary_tv"
+        app:layout_constraintStart_toStartOf="@+id/summary_tv"
+        app:layout_constraintTop_toBottomOf="@+id/summary_tv" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="@+id/summary_tv"
         app:layout_constraintStart_toStartOf="@+id/summary_tv"
         app:layout_constraintTop_toBottomOf="@+id/summary_tv" />

@@ -4,6 +4,6 @@ import com.google.gson.annotations.SerializedName
 
 data class Weather(
     val latitude: Double, val longitude: Double,
-    val timeZone: String,
+    val timezone: String,
     @SerializedName("currently") val currentWeather: CurrentWeather
 )
