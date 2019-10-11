@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Klarna Weather</string>
+    <string name="permission_denied">Location permission was denied</string>
+    <string name="location_error">Unable to get current location</string>
 </resources>
