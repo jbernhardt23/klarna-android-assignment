@@ -26,4 +26,16 @@ interface MainView {
      * @param weather
      */
     fun updateWeatherInfo(weather: Weather)
+
+
+    /**
+     * last known location listener
+     */
+    fun getLastKnownLocation()
+
+
+    /**
+     * Request location permissions
+     */
+    fun requestLocationPermission()
 }

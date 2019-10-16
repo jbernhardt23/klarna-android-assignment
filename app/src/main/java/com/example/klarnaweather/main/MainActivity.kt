@@ -18,13 +18,11 @@ import com.google.android.gms.location.LocationServices
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-const val REQUEST_CODE = 1
-const val TAG = "Location"
 
 class MainActivity : AppCompatActivity(), MainView {
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private val presenter = MainPresenter(this, MainInteractor())
+    private val presenter = MainPresenter(this)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,20 +49,14 @@ class MainActivity : AppCompatActivity(), MainView {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_CODE) {
-            if (grantResults.isEmpty()) {
-                hideLoading()
-            } else if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                getLastKnownLocation()
-            } else {
-                hideLoading()
-                presenter.onErrorShown(getString(R.string.permission_denied))
-            }
-        }
+
+        presenter.permissionResult(requestCode, grantResults, PackageManager.PERMISSION_GRANTED)
+
+
     }
 
     override fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     override fun showLoading() {
@@ -85,14 +77,25 @@ class MainActivity : AppCompatActivity(), MainView {
         summary_tv.text = weather.currentWeather.summary
     }
 
+
+    override fun getLastKnownLocation() {
+        fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
+            location?.let { presenter.getWeatherInfo(location.latitude, location.longitude) }
+        }
+    }
+
+    override fun requestLocationPermission() {
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+            REQUEST_CODE
+        )
+    }
+
     fun onRefreshClick(view: View) {
         requestLocation()
     }
 
-    /**
-     * Checks if location permission is granted and gets the
-     * latest location.
-     */
     private fun requestLocation() {
         //check if permission is granted already
         val isPermissionGranted = ContextCompat.checkSelfPermission(
@@ -100,28 +103,9 @@ class MainActivity : AppCompatActivity(), MainView {
             Manifest.permission.ACCESS_FINE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED
 
-        if (isPermissionGranted) {
-            getLastKnownLocation()
-        } else {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                REQUEST_CODE
-            )
-        }
+        presenter.checkPermissionIsGranted(isPermissionGranted)
+
     }
 
-    /**
-     * Get last known location. Location task can be null.
-     */
-    private fun getLastKnownLocation() {
-        fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
-            if (location == null) {
-                showToast(getString(R.string.location_error))
-            } else {
-                presenter.getWeatherInfo(location.latitude, location.longitude)
-            }
-        }
-    }
 
 }
